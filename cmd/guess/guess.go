@@ -1,41 +1,17 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
 	"github.com/honza/kids/lib"
-	"os"
-	"strconv"
-	"strings"
 )
 
-func GetNumberFromUser() int {
-
-	for {
-
-		fmt.Print("Your guess: ")
-		reader := bufio.NewReader(os.Stdin)
-		text, _ := reader.ReadString('\n')
-
-		i, err := strconv.Atoi(strings.Trim(text, "\n"))
-
-		if err != nil {
-			fmt.Println("Not a number.")
-			continue
-		}
-
-		return i
-
-	}
-}
-
 func main() {
-	secret := lib.RandomInt()
+	secret := lib.RandomInt(100)
 
 	fmt.Println("Guess a number between 0 and 100.")
 
 	for {
-		n := GetNumberFromUser()
+		n := lib.GetNumberFromUser("Your guess: ")
 
 		if n == secret {
 			fmt.Println("You win!")

@@ -1,10 +1,13 @@
 package lib
 
 import (
+	"bufio"
 	"crypto/rand"
 	"fmt"
 	"math/big"
 	"os"
+	"strconv"
+	"strings"
 	"time"
 )
 
@@ -32,8 +35,8 @@ func DaysUntil(t time.Time) int {
 	return DurationToDays(delta)
 }
 
-func RandomInt() int {
-	i := big.NewInt(100)
+func RandomInt(ceil int) int {
+	i := big.NewInt(int64(ceil))
 	value, err := rand.Int(rand.Reader, i)
 
 	if err != nil {
@@ -42,4 +45,24 @@ func RandomInt() int {
 
 	return int(value.Int64())
 
+}
+
+func GetNumberFromUser(prompt string) int {
+
+	for {
+
+		fmt.Print(prompt)
+		reader := bufio.NewReader(os.Stdin)
+		text, _ := reader.ReadString('\n')
+
+		i, err := strconv.Atoi(strings.Trim(text, "\n"))
+
+		if err != nil {
+			fmt.Println("Not a number.")
+			continue
+		}
+
+		return i
+
+	}
 }
