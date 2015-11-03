@@ -8,7 +8,7 @@ import (
 )
 
 var args struct {
-	Number int
+	Number int `arg:"positional,required"`
 }
 
 type Operator struct {
