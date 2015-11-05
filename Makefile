@@ -16,10 +16,10 @@ clean:
 	rm guess days-until-christmas days-until-birthday math
 
 raspberry:
-	gox -osarch="linux/arm" ./cmd/guess
-	gox -osarch="linux/arm" ./cmd/days-until-birthday
-	gox -osarch="linux/arm" ./cmd/days-until-christmas
-	gox -osarch="linux/arm" ./cmd/math
+	GOOS=linux GOARCH=arm GOARM=6 ~/Github/go/bin/go build ./cmd/guess
+	GOOS=linux GOARCH=arm GOARM=6 ~/Github/go/bin/go build ./cmd/days-until-birthday
+	GOOS=linux GOARCH=arm GOARM=6 ~/Github/go/bin/go build ./cmd/days-until-christmas
+	GOOS=linux GOARCH=arm GOARM=6 ~/Github/go/bin/go build ./cmd/math
 
 lint:
 	golint cmd/guess/guess.go
